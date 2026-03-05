@@ -1,545 +1,229 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد فيديوهات القرآن الكريم - GitHub Pages</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .control-panel, .preview-panel {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-        }
-
-        h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #fdbb2d;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #34495e;
-            font-weight: 600;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: 'Amiri', serif;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        .ayah-preview {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 2px solid #fdbb2d;
-            min-height: 200px;
-        }
-
-        .arabic {
-            font-family: 'Amiri', serif;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            line-height: 1.8;
-        }
-
-        .translation {
-            font-size: 1.2em;
-            color: #666;
-            font-style: italic;
-        }
-
-        .progress-container {
-            margin-top: 20px;
-        }
-
-        .progress-bar {
-            height: 20px;
-            background: #ecf0f1;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-            transition: width 0.3s;
-        }
-
-        #resultVideo {
-            width: 100%;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-
-        .github-corner {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        .info-box {
-            background: #e3f2fd;
-            border-right: 4px solid #2196f3;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-    </style>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-    <!-- استخدام FFmpeg نسخة مستقرة -->
-    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.0/dist/ffmpeg.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مولد فيديوهات القرآن الكريم - أونلاين</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f0f0f0; padding:20px; }
+    .container { max-width:1400px; margin:0 auto; background:white; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.2); overflow:hidden; }
+    header { background:#203a43; color:white; padding:30px; text-align:center; }
+    header h1 { font-size:2.5em; margin-bottom:10px; }
+    header p { font-size:1.2em; opacity:0.9; }
+    .main-content { display:grid; grid-template-columns:400px 1fr; gap:20px; padding:20px; }
+    .control-panel, .preview-panel { background:#f8f9fa; border-radius:15px; padding:20px; }
+    h2 { color:#2c3e50; margin-bottom:20px; padding-bottom:10px; border-bottom:3px solid #fdbb2d; }
+    .form-group { margin-bottom:20px; }
+    .form-group label { display:block; margin-bottom:8px; color:#34495e; font-weight:600; }
+    .form-control { width:100%; padding:12px; border:2px solid #ddd; border-radius:8px; font-size:1em; font-family:'Amiri', serif; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .btn-primary { width:100%; padding:15px; background:#203a43; color:white; border:none; border-radius:8px; font-size:1.2em; font-weight:bold; cursor:pointer; }
+    .btn-primary:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 5px 20px rgba(0,0,0,0.3); }
+    .btn-primary:disabled { opacity:0.5; cursor:not-allowed; }
+    .btn-secondary { padding:10px 20px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; margin:5px; }
+    .ayah-preview { background:white; padding:30px; border-radius:10px; text-align:center; margin-bottom:20px; border:2px solid #fdbb2d; min-height:200px; }
+    .arabic { font-family:'Amiri', serif; font-size:2.2em; margin-bottom:20px; color:#2c3e50; line-height:1.8; }
+    .progress-container { margin-top:20px; }
+    .progress-bar { height:20px; background:#ecf0f1; border-radius:10px; overflow:hidden; margin:10px 0; }
+    .progress-fill { height:100%; background:#203a43; transition:width 0.3s; }
+    #resultVideo { width:100%; border-radius:10px; margin:10px 0; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🎬 مولد فيديوهات القرآن الكريم</h1>
-            <p>للإستخدام على GitHub Pages - لا توجد أخطاء!</p>
-        </header>
+<div class="container">
+<header>
+    <h1>🎬 مولد فيديوهات القرآن الكريم</h1>
+    <p>كل شيء أونلاين بدون تحميل</p>
+</header>
 
-        <div class="main-content">
-            <!-- لوحة التحكم -->
-            <div class="control-panel">
-                <h2>⚙️ الإعدادات</h2>
-                
-                <div class="info-box">
-                    <strong>✅ يعمل على GitHub Pages بدون مشاكل</strong>
-                </div>
-
-                <div class="form-group">
-                    <label>🎤 اختر القارئ:</label>
-                    <select id="reciter" class="form-control">
-                        <option value="">جاري التحميل...</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>📖 اختر السورة:</label>
-                    <select id="surah" class="form-control" disabled>
-                        <option value="">اختر القارئ أولاً</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>من آية:</label>
-                        <input type="number" id="fromAyah" class="form-control" min="1" value="1">
-                    </div>
-                    <div class="form-group">
-                        <label>إلى آية:</label>
-                        <input type="number" id="toAyah" class="form-control" min="1" value="3">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="showTranslation" checked>
-                        إظهار الترجمة (إنجليزي)
-                    </label>
-                </div>
-
-                <button id="generateBtn" class="btn-primary">🎬 إنشاء الفيديو</button>
+<div class="main-content">
+    <!-- لوحة التحكم -->
+    <div class="control-panel">
+        <h2>⚙️ الإعدادات</h2>
+        <div class="form-group">
+            <label>🎤 اختر القارئ:</label>
+            <select id="reciter" class="form-control">
+                <option value="">جاري التحميل...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>📖 اختر السورة:</label>
+            <select id="surah" class="form-control" disabled>
+                <option value="">اختر القارئ أولاً</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>من آية:</label>
+                <input type="number" id="fromAyah" class="form-control" min="1" value="1">
             </div>
-
-            <!-- المعاينة -->
-            <div class="preview-panel">
-                <h2>👁️ المعاينة</h2>
-                
-                <div id="ayahPreview" class="ayah-preview">
-                    <div class="arabic" id="previewArabic"></div>
-                    <div class="translation" id="previewTranslation"></div>
-                </div>
-
-                <div id="progressArea" style="display: none;">
-                    <h3>⏳ جاري إنشاء الفيديو...</h3>
-                    <div class="progress-bar">
-                        <div id="progressFill" class="progress-fill" style="width: 0%;"></div>
-                    </div>
-                    <p id="progressStatus">بدء المعالجة...</p>
-                </div>
-
-                <div id="resultArea" style="display: none;">
-                    <h3>✅ تم إنشاء الفيديو!</h3>
-                    <video id="resultVideo" controls></video>
-                    <button id="downloadBtn" class="btn-secondary">⬇️ تحميل الفيديو</button>
-                    <button id="newVideoBtn" class="btn-secondary">🆕 فيديو جديد</button>
-                </div>
-
-                <div id="errorArea" style="display: none; color: #721c24; background: #f8d7da; padding: 15px; border-radius: 8px;"></div>
+            <div class="form-group">
+                <label>إلى آية:</label>
+                <input type="number" id="toAyah" class="form-control" min="1" value="3">
             </div>
         </div>
+        <button id="generateBtn" class="btn-primary">🎬 إنشاء الفيديو</button>
     </div>
 
-    <script>
-        // قائمة القراء الكاملة
-        const READERS = [
-            { id: 'ar.abdulbasit', name: 'عبد الباسط عبد الصمد', country: 'مصر' },
-            { id: 'ar.abdullahbasfar', name: 'عبد الله بصفر', country: 'السعودية' },
-            { id: 'ar.ahmedajamy', name: 'أحمد العجمي', country: 'السعودية' },
-            { id: 'ar.hanirifai', name: 'هاني الرفاعي', country: 'مصر' },
-            { id: 'ar.khalidqalaji', name: 'خالد القلجي', country: 'السعودية' },
-            { id: 'ar.mahmoudalhosary', name: 'محمود خليل الحصري', country: 'مصر' },
-            { id: 'ar.misharialafasy', name: 'مشاري العفاسي', country: 'الكويت' },
-            { id: 'ar.muhammadjibreel', name: 'محمد جبريل', country: 'مصر' },
-            { id: 'ar.nasserqatami', name: 'ناصر القطامي', country: 'السعودية' },
-            { id: 'ar.saadghamdi', name: 'سعد الغامدي', country: 'السعودية' },
-            { id: 'ar.saudalshuraym', name: 'سعود الشريم', country: 'السعودية' },
-            { id: 'ar.yasseralsi', name: 'ياسر الدوسري', country: 'السعودية' }
-        ];
+    <!-- المعاينة -->
+    <div class="preview-panel">
+        <h2>👁️ المعاينة</h2>
+        <div id="ayahPreview" class="ayah-preview">
+            <div class="arabic" id="previewArabic"></div>
+        </div>
+        <div id="progressArea" style="display:none;">
+            <h3>⏳ جاري إنشاء الفيديو...</h3>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill" style="width:0%;"></div>
+            </div>
+            <p id="progressStatus">بدء المعالجة...</p>
+        </div>
+        <div id="resultArea" style="display:none;">
+            <h3>✅ تم إنشاء الفيديو!</h3>
+            <video id="resultVideo" controls autoplay></video>
+        </div>
+    </div>
+</div>
+</div>
 
-        // قائمة السور
-        const SURAHS = [
-            { number: 1, name: 'الفاتحة', ayahs: 7 },
-            { number: 2, name: 'البقرة', ayahs: 286 },
-            { number: 3, name: 'آل عمران', ayahs: 200 },
-            { number: 4, name: 'النساء', ayahs: 176 },
-            { number: 5, name: 'المائدة', ayahs: 120 },
-            { number: 6, name: 'الأنعام', ayahs: 165 },
-            { number: 7, name: 'الأعراف', ayahs: 206 },
-            { number: 8, name: 'الأنفال', ayahs: 75 },
-            { number: 9, name: 'التوبة', ayahs: 129 },
-            { number: 10, name: 'يونس', ayahs: 109 },
-            { number: 11, name: 'هود', ayahs: 123 },
-            { number: 12, name: 'يوسف', ayahs: 111 },
-            { number: 13, name: 'الرعد', ayahs: 43 },
-            { number: 14, name: 'إبراهيم', ayahs: 52 },
-            { number: 15, name: 'الحجر', ayahs: 99 },
-            { number: 16, name: 'النحل', ayahs: 128 },
-            { number: 17, name: 'الإسراء', ayahs: 111 },
-            { number: 18, name: 'الكهف', ayahs: 110 },
-            { number: 19, name: 'مريم', ayahs: 98 },
-            { number: 20, name: 'طه', ayahs: 135 },
-            { number: 21, name: 'الأنبياء', ayahs: 112 },
-            { number: 22, name: 'الحج', ayahs: 78 },
-            { number: 23, name: 'المؤمنون', ayahs: 118 },
-            { number: 24, name: 'النور', ayahs: 64 },
-            { number: 25, name: 'الفرقان', ayahs: 77 },
-            { number: 26, name: 'الشعراء', ayahs: 227 },
-            { number: 27, name: 'النمل', ayahs: 93 },
-            { number: 28, name: 'القصص', ayahs: 88 },
-            { number: 29, name: 'العنكبوت', ayahs: 69 },
-            { number: 30, name: 'الروم', ayahs: 60 }
-        ];
+<script>
+// قائمة القراء
+const READERS = [
+    { id: 'ar.abdulbasit', name: 'عبد الباسط عبد الصمد' },
+    { id: 'ar.saudalshuraym', name: 'سعود الشريم' }
+];
 
-        let currentAyahs = [];
+// السور
+const SURAHS = [
+    { number:1, name:'الفاتحة', ayahs:7 },
+    { number:2, name:'البقرة', ayahs:286 }
+];
 
-        // تحميل القراء
-        function loadReaders() {
-            const select = document.getElementById('reciter');
-            select.innerHTML = '<option value="">اختر القارئ...</option>';
-            READERS.forEach(reader => {
-                const option = document.createElement('option');
-                option.value = reader.id;
-                option.textContent = `${reader.name} (${reader.country})`;
-                select.appendChild(option);
-            });
+// خلفيات جوامع تركية
+const BACKGROUNDS = [
+    'https://images.pexels.com/photos/35574185/pexels-photo-35574185.jpeg',
+    'https://images.pexels.com/photos/9138165/pexels-photo-9138165.jpeg',
+    'https://images.unsplash.com/photo-1601758123927-58bfa720292f',
+    'https://images.unsplash.com/photo-1544451926-6762a58c2c43'
+];
+
+let currentAyahs = [];
+
+// تحميل القراء
+function loadReaders(){
+    const select = document.getElementById('reciter');
+    select.innerHTML = '<option value="">اختر القارئ...</option>';
+    READERS.forEach(r=>{
+        const option=document.createElement('option');
+        option.value=r.id; option.textContent=r.name;
+        select.appendChild(option);
+    });
+}
+
+// تحميل السور
+function loadSurahs(){
+    const select=document.getElementById('surah');
+    select.innerHTML='<option value="">اختر السورة...</option>';
+    select.disabled=false;
+    SURAHS.forEach(s=>{
+        const option=document.createElement('option');
+        option.value=s.number; option.textContent=`${s.number}. ${s.name}`;
+        option.setAttribute('data-ayahs',s.ayahs);
+        select.appendChild(option);
+    });
+}
+
+// جلب نص الآية
+async function fetchAyahText(surah,ayah){
+    try{
+        const res=await axios.get(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}`);
+        return res.data.data.text;
+    }catch(e){return 'خطأ';}
+}
+
+// تحديث المعاينة
+async function updatePreview(){
+    const surah=document.getElementById('surah').value;
+    const fromAyah=document.getElementById('fromAyah').value;
+    if(!surah) return;
+    const text=await fetchAyahText(surah,fromAyah);
+    document.getElementById('previewArabic').innerHTML=text;
+}
+
+// إنشاء الفيديو أونلاين مع الصوت والصور
+async function generateVideo(){
+    const surah=document.getElementById('surah').value;
+    const fromAyah=parseInt(document.getElementById('fromAyah').value);
+    const toAyah=parseInt(document.getElementById('toAyah').value);
+    const reciter=document.getElementById('reciter').value;
+
+    currentAyahs=[];
+    for(let i=fromAyah;i<=toAyah;i++){
+        const text=await fetchAyahText(surah,i);
+        const audio=new Audio(`https://www.everyayah.com/data/${reciter}/${String(surah).padStart(3,'0')}${String(i).padStart(3,'0')}.mp3`);
+        currentAyahs.push({text,audio});
+        updateProgress(20+(i-fromAyah+1)/(toAyah-fromAyah+1)*30,`تم تحميل الآية ${i-fromAyah+1}/${toAyah-fromAyah+1}`);
+    }
+
+    const canvas=document.createElement('canvas'); canvas.width=1280; canvas.height=720;
+    const ctx=canvas.getContext('2d');
+    const stream=canvas.captureStream(30);
+    const recorder=new MediaRecorder(stream);
+    const chunks=[];
+
+    recorder.ondataavailable=e=>chunks.push(e.data);
+    recorder.onstop=()=>{
+        const blob=new Blob(chunks,{type:'video/webm'});
+        document.getElementById('resultVideo').src=URL.createObjectURL(blob);
+    };
+    recorder.start();
+
+    for(let ayah of currentAyahs){
+        const bg=new Image();
+        bg.src=BACKGROUNDS[Math.floor(Math.random()*BACKGROUNDS.length)];
+        await new Promise(r=>bg.onload=r);
+
+        ayah.audio.play();
+        for(let frame=0;frame<240;frame++){
+            ctx.drawImage(bg,0,0,canvas.width,canvas.height);
+            ctx.font='bold 48px Amiri'; ctx.fillStyle='white'; ctx.textAlign='center';
+            ctx.fillText(ayah.text,canvas.width/2,canvas.height/2);
+            await new Promise(r=>setTimeout(r,33));
         }
+        ayah.audio.pause(); ayah.audio.currentTime=0;
+    }
 
-        // تحميل السور
-        function loadSurahs() {
-            const select = document.getElementById('surah');
-            select.innerHTML = '<option value="">اختر السورة...</option>';
-            select.disabled = false;
-            
-            SURAHS.forEach(surah => {
-                const option = document.createElement('option');
-                option.value = surah.number;
-                option.textContent = `${surah.number}. ${surah.name}`;
-                option.setAttribute('data-ayahs', surah.ayahs);
-                select.appendChild(option);
-            });
-        }
+    recorder.stop();
+    updateProgress(100,'تم الإنشاء بنجاح!');
+}
 
-        // جلب نص الآية
-        async function fetchAyahText(surah, ayah) {
-            try {
-                const response = await axios.get(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}`);
-                return response.data.data.text;
-            } catch (error) {
-                console.error('خطأ:', error);
-                return 'حدث خطأ';
-            }
-        }
+function updateProgress(p,s){
+    document.getElementById('progressFill').style.width=p+'%';
+    document.getElementById('progressStatus').textContent=s;
+}
 
-        async function fetchTranslation(surah, ayah) {
-            try {
-                const response = await axios.get(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/en.sahih`);
-                return response.data.data.text;
-            } catch (error) {
-                return '';
-            }
-        }
+// الأحداث
+document.getElementById('reciter').addEventListener('change',loadSurahs);
+document.getElementById('surah').addEventListener('change',updatePreview);
+document.getElementById('fromAyah').addEventListener('change',updatePreview);
+document.getElementById('toAyah').addEventListener('change',updatePreview);
 
-        // تحديث المعاينة
-        async function updatePreview() {
-            const surah = document.getElementById('surah').value;
-            const fromAyah = document.getElementById('fromAyah').value;
-            
-            if (!surah) return;
+document.getElementById('generateBtn').addEventListener('click',async()=>{
+    if(!document.getElementById('surah').value){alert('اختر السورة'); return;}
+    document.getElementById('progressArea').style.display='block';
+    document.getElementById('resultArea').style.display='none';
+    document.getElementById('generateBtn').disabled=true;
+    try{ await generateVideo(); document.getElementById('resultArea').style.display='block'; }
+    catch(e){alert('خطأ: '+e.message);}
+    finally{document.getElementById('generateBtn').disabled=false; document.getElementById('progressArea').style.display='none';}
+});
 
-            const text = await fetchAyahText(surah, fromAyah);
-            const translation = document.getElementById('showTranslation').checked ? 
-                await fetchTranslation(surah, fromAyah) : '';
-
-            document.getElementById('previewArabic').innerHTML = text;
-            document.getElementById('previewTranslation').innerHTML = translation;
-        }
-
-        // إنشاء الفيديو (بدون FFmpeg - باستخدام Canvas)
-        async function generateVideo() {
-            const surah = document.getElementById('surah').value;
-            const fromAyah = parseInt(document.getElementById('fromAyah').value);
-            const toAyah = parseInt(document.getElementById('toAyah').value);
-            const showTranslation = document.getElementById('showTranslation').checked;
-
-            updateProgress(20, 'جاري تحميل الآيات...');
-
-            // تحميل بيانات الآيات
-            currentAyahs = [];
-            for (let i = fromAyah; i <= toAyah; i++) {
-                const [text, translation] = await Promise.all([
-                    fetchAyahText(surah, i),
-                    showTranslation ? fetchTranslation(surah, i) : Promise.resolve('')
-                ]);
-                currentAyahs.push({ text, translation });
-                updateProgress(20 + (i - fromAyah + 1) / (toAyah - fromAyah + 1) * 30, 
-                    `تم تحميل الآية ${i - fromAyah + 1}/${toAyah - fromAyah + 1}`);
-            }
-
-            updateProgress(50, 'جاري إنشاء الفيديو...');
-
-            // إنشاء فيديو باستخدام Canvas
-            const canvas = document.createElement('canvas');
-            canvas.width = 1280;
-            canvas.height = 720;
-            const ctx = canvas.getContext('2d');
-
-            const stream = canvas.captureStream(30);
-            const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-            
-            const chunks = [];
-            recorder.ondataavailable = e => chunks.push(e.data);
-            recorder.onstop = () => {
-                const blob = new Blob(chunks, { type: 'video/webm' });
-                const url = URL.createObjectURL(blob);
-                document.getElementById('resultVideo').src = url;
-            };
-
-            recorder.start();
-
-            // رسم الآيات على canvas
-            for (let i = 0; i < currentAyahs.length; i++) {
-                const ayah = currentAyahs[i];
-                for (let frame = 0; frame < 240; frame++) { // 8 ثواني لكل آية (30fps * 8 = 240)
-                    ctx.fillStyle = '#0f2027';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    
-                    // رسم النص
-                    ctx.font = 'bold 48px Amiri';
-                    ctx.fillStyle = 'white';
-                    ctx.textAlign = 'center';
-                    
-                    // تقسيم النص الطويل
-                    const words = ayah.text.split(' ');
-                    let lines = [];
-                    let currentLine = '';
-                    
-                    for (let word of words) {
-                        const testLine = currentLine + ' ' + word;
-                        const metrics = ctx.measureText(testLine);
-                        if (metrics.width > 1000) {
-                            lines.push(currentLine);
-                            currentLine = word;
-                        } else {
-                            currentLine = testLine;
-                        }
-                    }
-                    lines.push(currentLine);
-                    
-                    // رسم الخطوط
-                    lines.forEach((line, index) => {
-                        ctx.fillText(line, canvas.width/2, 300 + index * 70);
-                    });
-                    
-                    if (showTranslation && ayah.translation) {
-                        ctx.font = '24px Arial';
-                        ctx.fillStyle = '#fdbb2d';
-                        ctx.fillText(ayah.translation, canvas.width/2, 600);
-                    }
-                    
-                    // التقدم
-                    updateProgress(50 + (i / currentAyahs.length) * 40, 
-                        `جاري إنشاء الفيديو: الآية ${i + 1}/${currentAyahs.length}`);
-                    
-                    await new Promise(r => setTimeout(r, 33)); // ~30fps
-                }
-            }
-
-            recorder.stop();
-            updateProgress(100, 'تم الإنشاء بنجاح!');
-        }
-
-        function updateProgress(percent, status) {
-            document.getElementById('progressFill').style.width = `${percent}%`;
-            document.getElementById('progressStatus').textContent = status;
-        }
-
-        // Event Listeners
-        document.getElementById('reciter').addEventListener('change', loadSurahs);
-        
-        document.getElementById('surah').addEventListener('change', (e) => {
-            if (e.target.value) {
-                const selected = e.target.options[e.target.selectedIndex];
-                const ayahs = selected.getAttribute('data-ayahs');
-                document.getElementById('toAyah').max = ayahs;
-                document.getElementById('toAyah').value = Math.min(3, ayahs);
-            }
-            updatePreview();
-        });
-
-        document.getElementById('fromAyah').addEventListener('change', updatePreview);
-        document.getElementById('toAyah').addEventListener('change', updatePreview);
-        document.getElementById('showTranslation').addEventListener('change', updatePreview);
-
-        document.getElementById('generateBtn').addEventListener('click', async () => {
-            if (!document.getElementById('surah').value) {
-                alert('الرجاء اختيار السورة');
-                return;
-            }
-
-            document.getElementById('progressArea').style.display = 'block';
-            document.getElementById('resultArea').style.display = 'none';
-            document.getElementById('generateBtn').disabled = true;
-
-            try {
-                await generateVideo();
-                document.getElementById('resultArea').style.display = 'block';
-                document.getElementById('progressArea').style.display = 'none';
-            } catch (error) {
-                document.getElementById('errorArea').style.display = 'block';
-                document.getElementById('errorArea').innerHTML = 'خطأ: ' + error.message;
-            } finally {
-                document.getElementById('generateBtn').disabled = false;
-            }
-        });
-
-        document.getElementById('downloadBtn').addEventListener('click', () => {
-            const video = document.getElementById('resultVideo');
-            if (video.src) {
-                const a = document.createElement('a');
-                a.href = video.src;
-                a.download = `quran_${Date.now()}.webm`;
-                a.click();
-            }
-        });
-
-        document.getElementById('newVideoBtn').addEventListener('click', () => {
-            document.getElementById('resultArea').style.display = 'none';
-        });
-
-        // بدء التطبيق
-        loadReaders();
-    </script>
+// بدء التطبيق
+loadReaders();
+loadSurahs();
+</script>
 </body>
 </html>
